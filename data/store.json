@@ -1,0 +1,29 @@
+{
+    "store": [
+        {
+            "name": "Quickship Kab. Bandung",
+            "phone": "771234",
+            "CityId": "1"
+        },
+        {
+            "name": "Quickship Kab. Bogor",
+            "phone": "771235",
+            "CityId": "4"
+        },
+        {
+            "name": "Quickship Kab. Majalengka",
+            "phone": "771236",
+            "CityId": "12"
+        },
+        {
+            "name": "Quickship Kota Cirebon",
+            "phone": "771237",
+            "CityId": "24"
+        },
+        {
+            "name": "Quickship Kota Depok",
+            "phone": "771238",
+            "CityId": "25"
+        }
+    ]
+}
