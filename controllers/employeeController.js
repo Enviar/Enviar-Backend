@@ -62,6 +62,31 @@ class employeeController {
             next(err)
         }
     }
+
+    static async checkPrice(req, res, next) {
+        try {
+            let output = 0
+            const { origin, destination, services, weight } = req.body
+            output = Math.abs(destination - origin) * 1000
+            if (output < 10000) {
+                output = 10000
+            } else if (output > 20000) {
+                output = 20000
+            }
+            output = output * weight
+            if (services == `extra`) {
+                output += 7000
+            }
+            // console.log(output);
+            res.status(200).json({
+                statusCode: 200,
+                data: output
+            })
+        }
+        catch (err) {
+            next(err)
+        }
+    }
 }
 
 module.exports = employeeController

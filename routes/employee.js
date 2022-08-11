@@ -2,7 +2,8 @@ const express = require('express')
 const employeeRouter = express.Router()
 const employeeController = require('../controllers/employeeController')
 const statusController = require('../controllers/statusController')
-employeeRouter.post('/register', employeeController.RegisterEmployee)
-employeeRouter.post('/login', employeeController.LoginEmployee)
-employeeRouter.get('/statusReceipt/:receipt', statusController.getStatus) //cek 
+employeeRouter.post('/register', employeeController.RegisterEmployee) //register admin
+employeeRouter.post('/login', employeeController.LoginEmployee) // login admin
+employeeRouter.post('/checkPrice', employeeController.checkPrice) // cek harga user
+employeeRouter.get('/statusReceipt/:receipt', statusController.getStatus) //cek resi user
 module.exports = employeeRouter
