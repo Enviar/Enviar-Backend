@@ -63,10 +63,32 @@ class employeeController {
         }
     }
 
+    static async getCity(req, res, next) {
+        try {
+            const response = await City.findAll({})
+            // console.log(response);
+            response.forEach(x => {
+                if (x.name.split(" ")[0] == `Kabupaten`) {
+                    x.name = `Kab. ${x.name.split(" ")[1]}`
+                }
+                else if (x.name.split(" ")[0] == `Kota`) {
+                    x.name = x.name.split(" ")[1]
+                }
+            })
+            res.status(200).json({
+                statusCode: 200,
+                data: response
+            })
+        }
+        catch (err) {
+            next(err)
+        }
+    }
+
     static async checkPrice(req, res, next) {
         try {
             let output = 0
-            const { origin, destination, services, weight } = req.body
+            const { origin, destination, weight } = req.body
             output = Math.abs(destination - origin) * 1000
             if (output < 10000) {
                 output = 10000
@@ -74,19 +96,22 @@ class employeeController {
                 output = 20000
             }
             output = output * weight
-            if (services == `extra`) {
-                output += 7000
-            }
+
             // console.log(output);
             res.status(200).json({
                 statusCode: 200,
-                data: output
+                data: {
+                    regular: output,
+                    extra: output + 7000
+                }
             })
         }
         catch (err) {
             next(err)
         }
     }
+
+    static async
 }
 
 module.exports = employeeController
