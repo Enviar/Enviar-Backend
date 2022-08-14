@@ -23,7 +23,7 @@ class statusController {
                 await t.commit()
                 res.status(201).json({
                     statusCode: 201,
-                    message: `Status is created`
+                    message: `Status is created`,
                 })
             } else {
                 console.log(`b`);
@@ -33,12 +33,51 @@ class statusController {
                 await t.commit()
                 res.status(201).json({
                     statusCode: 201,
-                    message: `Status is created`
+                    message: `Status is created`,
+                    data: response2
                 })
             }
         }
         catch (err) {
             await t.rollback()
+            next(err)
+        }
+    }
+
+    static async statusAcceptance(req, res, next) {
+        try {
+            let arrayProduct = []
+            const receiptNumber = req.body.receiptNumber
+            // console.log(receiptNumber);
+            for (const info in receiptNumber) {
+                // console.log(receiptNumber[info].receipt);
+                const ResponseData = await Product.findOne({
+                    where: {
+                        receiptNumber: receiptNumber[info].receipt
+                    }
+                })
+                if (!ResponseData) {
+                    throw new Error(`NOT_FOUND`)
+                }
+                arrayProduct.push(ResponseData)
+            }
+            // console.log(arrayProduct[1].id);
+            let fixedData = arrayProduct.map((el, i) => {
+                return {
+                    // EmployeeId: +req.additionalData.id, ProductId, CityId, notes
+                    EmployeeId: +req.additionalData.id,
+                    ProductId: el.id,
+                    CityId: +req.additionalData.cityId,
+                    notes: `transit_diterima`
+                }
+            })
+            // console.log(fixedData);
+            const result = await Status.bulkCreate(fixedData);
+            console.log(result);
+            res.status(201).json(result)
+            //7983
+        }
+        catch (err) {
             next(err)
         }
     }
@@ -189,17 +228,27 @@ class statusController {
                     statusx.forEach(el => {
                         arrayStatus.push(el.notes)
                     })
-                    // console.log(arrayStatus, list);
-                    if (arrayStatus[arrayStatus.length - 1] == `disiapkan`) {
+                    console.log(arrayStatus, list, `disiapkan infop`);
+                    // if (arrayStatus[arrayStatus.length - 1] == `disiapkan`) {
+                    //     listToSend.push(list)
+                    // }
+                    // console.log(listToSend);
+                    if (arrayStatus.includes('siap_dikirim') || arrayStatus.includes('transit_dikirim')) {
+                        // console.log(`siap_dikim`, list);
+                    }
+                    else if (arrayStatus[arrayStatus.length - 1] == `transit_diterima`) {
                         listToSend.push(list)
                     }
-                    // console.log(listToSend);
+                    else {
+                        listToSend.push(list)
+                    }
                     arrayStatus = []
 
                 } catch (err) {
                     next(err)
                 }
             }
+            console.log(dataTransit, `dataTransit`);
             for (const list of dataTransit) {
                 try {
                     const statusx = await Status.findAll({
@@ -211,16 +260,26 @@ class statusController {
                     statusx.forEach(el => {
                         arrayStatus.push(el.notes)
                     })
-                    console.log(arrayStatus, list);
 
-                    // if (arrayStatus[arrayStatus.length - 1] == `transit_diterima`) {
-                    //     listTransit.push(list)
-                    // }
-                    if (arrayStatus.includes('siap_dikirim')) {
+                    console.log(arrayStatus, `arrayStatys`, list);
+                    if (arrayStatus.includes(`transit_diterima`)) {
+                        if (arrayStatus.includes('siap_dikirim')) {
+                            console.log(`cya`, list);
+                        } else {
+                            console.log(`aya`, list);
+                            listTransit.push(list)
 
-                    } else {
+                        }
+                    }
+                    else if (arrayStatus.includes('siap_dikirim') || arrayStatus.includes('transit_dikirim')) {
+                        // console.log(`blok`);
+                        // console.log(`siap_dikim`, list);
+                    }
+                    else {
+                        console.log(`as`);
                         listTransit.push(list)
                     }
+
                     // console.log(listToSend);
                     arrayStatus = []
 
@@ -246,7 +305,8 @@ class statusController {
             //         next(err)
             //     }
             // }
-            console.log(listToSend);
+            console.log(listTransit, `listTransit`);
+            console.log(listToSend, `listtosend`);
             for (let fixSend of listToSend) {
                 try {
                     console.log(dataToSend.length, `data to send`);
@@ -379,9 +439,15 @@ class statusController {
         try {
             const id = +req.params.id
             const response = await Status.findByPk(+id, {
-                include: [Product]
+                include: [Product, City]
             })
-            res.status(200).json(response)
+            const destination = await City.findByPk(+response.Product.recipientCity)
+            // console.log(destination);
+            res.status(200).json({
+                statusCode: 201,
+                data: response,
+                destination: destination
+            })
         }
         catch (err) {
             next(err)

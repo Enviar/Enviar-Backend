@@ -15,6 +15,19 @@ class locationController {
         }
     }
 
+    static async getStore(req, res, next) {
+        try {
+            const response = await Store.findAll()
+            res.status(200).json({
+                statusCode: 201,
+                data: response
+            })
+        }
+        catch (err) {
+            next(err)
+        }
+    }
+
     static async addStore(req, res, next) {
         try {
             const { name, phone, CityId } = req.body
