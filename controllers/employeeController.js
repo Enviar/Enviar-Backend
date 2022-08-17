@@ -1,4 +1,4 @@
-const e = require('express')
+// const e = require('express')
 const { compareHash } = require('../helpers/bcrypt')
 const { createToken } = require('../helpers/token')
 const { Employee, Store, City } = require('../models')
@@ -55,7 +55,8 @@ class employeeController {
             res.status(200).json({
                 statusCode: 200,
                 access_token: token,
-                Courier_loc: cityCom
+                Courier_loc: cityCom,
+                role: response.role
             })
         }
         catch (err) {
