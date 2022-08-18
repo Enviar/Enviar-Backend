@@ -361,14 +361,27 @@ class statusController {
 
                         }
                     } else {
+
                         const fixData2 = await Status.findAll({
                             where: {
                                 ProductId: fixSend,
-                                notes: `disiapkan`
+                                notes: `transit_diterima`
                             },
                             include: [Product]
                         })
-                        dataToSend.push(fixData2)
+                        if (fixData2.length > 1) {
+                            dataToSend.push(fixData2)
+                        }
+                        else if (fixData2.length < 1) {
+                            const fixData3 = await Status.findAll({
+                                where: {
+                                    ProductId: fixSend,
+                                    notes: `transit_diterima`
+                                },
+                                include: [Product]
+                            })
+                            dataToSend.push(fixData3)
+                        }
                     }
                 } catch (err) {
                     next(err)
