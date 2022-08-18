@@ -9,3 +9,4 @@ employeeRouter.post('/login', employeeController.LoginEmployee) // login admin
 employeeRouter.post('/checkPrice', employeeController.checkPrice) // cek harga user
 employeeRouter.get('/statusReceipt/:receipt', statusController.getStatus) //cek resi user
 module.exports = employeeRouter
+

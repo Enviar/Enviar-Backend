@@ -119,15 +119,14 @@ module.exports = (sequelize, DataTypes) => {
     typeService: {
       type: DataTypes.STRING,
       allowNull: false,
-
-      validate: {
-        notEmpty: {
-          msg: `Service Type can not be empty`
-        },
-        notNull: {
-          msg: `Service Type can not be Null`
-        },
-      }
+      // validate: {
+      //   notEmpty: {
+      //     msg: `Service Type can not be empty`
+      //   },
+      //   notNull: {
+      //     msg: `Service Type can not be Null`
+      //   },
+      // }
     },
     receiptNumber: {
       type: DataTypes.STRING,

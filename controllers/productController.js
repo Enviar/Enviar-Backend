@@ -7,6 +7,7 @@ class productController {
         const t = await sequelize.transaction()
         try {
             const { senderName, senderPhone, recipientName, recipientPhone, recipientAddress, recipientCity, weightProduct, typeProduct, typeService } = req.body
+            console.log(req.body);
             let output = 0
             let flag = false
             const origin = req.additionalData.cityId
@@ -38,7 +39,7 @@ class productController {
             if (flag == true) {
 
                 const response = await Product.create({
-                    senderName, senderPhone, recipientName, recipientPhone, recipientAddress, recipientCity, weightProduct, typeProduct, shipmentPrice: output, receiptNumber: receipt
+                    senderName, senderPhone, recipientName, recipientPhone, recipientAddress, recipientCity, weightProduct, typeProduct, typeService: typeService, shipmentPrice: output, receiptNumber: receipt,
                 }, { transaction: t })
 
                 const responseStatus = await Status.create(
