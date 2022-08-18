@@ -6,20 +6,51 @@ class productController {
 
         const t = await sequelize.transaction()
         try {
-            const { senderName, senderPhone, recipientName, recipientPhone, recipientAddress, recipientCity, weightProduct, typeProduct } = req.body
-            const response = await Product.create({
-                senderName, senderPhone, recipientName, recipientPhone, recipientAddress, recipientCity, weightProduct, typeProduct, shipmentPrice: 5000 * recipientCity, receiptNumber: Math.floor((Math.random() * 9999) + 1)
-            }, { transaction: t })
+            const { senderName, senderPhone, recipientName, recipientPhone, recipientAddress, recipientCity, weightProduct, typeProduct, typeService } = req.body
+            let output = 0
+            let flag = false
+            const origin = req.additionalData.cityId
+            let receipt = ""
+            do {
 
-            const responseStatus = await Status.create(
-                { EmployeeId: +req.additionalData.id, ProductId: response.id, CityId: +req.additionalData.cityId, notes: `disiapkan` },
-                { transaction: t }
-            )
-            await t.commit()
-            res.status(201).json({
-                statusCOde: 201,
-                message: `Product is created`
-            })
+                receipt = `E` + origin + recipientCity + (Math.floor(Math.random() * 99999) + 1)
+                output = Math.abs(recipientCity - origin) * 1000
+                if (output < 10000) {
+                    output = 10000
+                } else if (output > 18000) {
+                    output = 18000
+                }
+                output = output * weightProduct
+                if (typeService == "extra") {
+                    output += 7000
+                }
+                const findReceipt = await Product.findOne({
+                    where: {
+                        receiptNumber: receipt
+                    }
+                })
+                // console.log(findReceipt);
+                if (!findReceipt) {
+                    flag = true
+                }
+            } while (flag == false)
+
+            if (flag == true) {
+
+                const response = await Product.create({
+                    senderName, senderPhone, recipientName, recipientPhone, recipientAddress, recipientCity, weightProduct, typeProduct, shipmentPrice: output, receiptNumber: receipt
+                }, { transaction: t })
+
+                const responseStatus = await Status.create(
+                    { EmployeeId: +req.additionalData.id, ProductId: response.id, CityId: +req.additionalData.cityId, notes: `disiapkan` },
+                    { transaction: t }
+                )
+                await t.commit()
+                res.status(201).json({
+                    statusCOde: 201,
+                    message: `Product is created`
+                })
+            }
         }
         catch (err) {
             await t.rollback()

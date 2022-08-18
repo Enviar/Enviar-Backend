@@ -25,7 +25,19 @@ module.exports = (sequelize, DataTypes) => {
   Status.init({
     EmployeeId: DataTypes.INTEGER,
     ProductId: DataTypes.INTEGER,
-    notes: DataTypes.TEXT,
+    notes: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+
+      validate: {
+        notEmpty: {
+          msg: `Notes can not be empty`
+        },
+        notNull: {
+          msg: `Notes can not be Null`
+        },
+      }
+    },
     CityId: DataTypes.INTEGER
   }, {
     sequelize,

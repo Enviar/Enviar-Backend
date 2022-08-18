@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+
       validate: {
         notEmpty: {
           msg: `password can not be empty`
@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
     firstname: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+
       validate: {
         notEmpty: {
           msg: `firstName can not be empty`
@@ -60,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
     lastname: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+
       validate: {
         notEmpty: {
           msg: `lastName can not be empty`
@@ -73,7 +73,7 @@ module.exports = (sequelize, DataTypes) => {
     phoneNumber: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+
       validate: {
         notEmpty: {
           msg: `phoneNumber can not be empty`
@@ -86,7 +86,7 @@ module.exports = (sequelize, DataTypes) => {
     role: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+
       validate: {
         notEmpty: {
           msg: `role can not be empty`
@@ -99,7 +99,7 @@ module.exports = (sequelize, DataTypes) => {
     StoreId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
+
       validate: {
         notEmpty: {
           msg: `StoreId can not be empty`

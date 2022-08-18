@@ -32,6 +32,9 @@ module.exports = {
       typeProduct: {
         type: Sequelize.STRING
       },
+      typeService: {
+        type: Sequelize.STRING
+      },
       receiptNumber: {
         type: Sequelize.STRING
       },

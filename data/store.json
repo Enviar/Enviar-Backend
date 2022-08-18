@@ -1,29 +1,134 @@
 {
     "store": [
         {
-            "name": "Quickship Kab. Bandung",
+            "name": "Enviar Kab. Bandung",
             "phone": "771234",
             "CityId": "1"
         },
         {
-            "name": "Quickship Kab. Bogor",
+            "name": "Enviar Kab. Bandung-Barat",
+            "phone": "7712112",
+            "CityId": "2"
+        },
+        {
+            "name": "Enviar Kab. Bekasi",
+            "phone": "771213",
+            "CityId": "3"
+        },
+        {
+            "name": "Enviar Kab. Bogor",
             "phone": "771235",
             "CityId": "4"
         },
         {
-            "name": "Quickship Kab. Majalengka",
+            "name": "Enviar Kab. Ciamis",
+            "phone": "7712114",
+            "CityId": "5"
+        },
+        {
+            "name": "Enviar Kab. Cianjur",
+            "phone": "7712116",
+            "CityId": "6"
+        },
+        {
+            "name": "Enviar Kab. Cirebon",
+            "phone": "7712115",
+            "CityId": "7"
+        },
+        {
+            "name": "Enviar Kab. Garut",
+            "phone": "7012112",
+            "CityId": "8"
+        },
+        {
+            "name": "Enviar Kab. Indramayu",
+            "phone": "7112110",
+            "CityId": "9"
+        },
+        {
+            "name": "Enviar Kab. Karawang",
+            "phone": "7212112",
+            "CityId": "10"
+        },
+        {
+            "name": "Enviar Kab. Kuningan",
+            "phone": "7312112",
+            "CityId": "11"
+        },
+        {
+            "name": "Enviar Kab. Majalengka",
             "phone": "771236",
             "CityId": "12"
         },
         {
-            "name": "Quickship Kota Cirebon",
+            "name": "Enviar Kab. Pangandaran",
+            "phone": "7412112",
+            "CityId": "13"
+        },
+        {
+            "name": "Enviar Kab. Purwakarta",
+            "phone": "7512112",
+            "CityId": "14"
+        },
+        {
+            "name": "Enviar Kab. Subang",
+            "phone": "7612112",
+            "CityId": "15"
+        },
+        {
+            "name": "Enviar Kab. Sukabumi",
+            "phone": "7712112",
+            "CityId": "16"
+        },
+        {
+            "name": "Enviar Kab. Sumedang",
+            "phone": "7812112",
+            "CityId": "17"
+        },
+        {
+            "name": "Enviar Kab. Tasikmalaya",
+            "phone": "7912112",
+            "CityId": "18"
+        },
+        {
+            "name": "Enviar Kota Bandung",
+            "phone": "7202112",
+            "CityId": "19"
+        },
+        {
+            "name": "Enviar Kota Banjar",
+            "phone": "7212112",
+            "CityId": "20"
+        },
+        {
+            "name": "Enviar Kota Bekasi",
+            "phone": "7222112",
+            "CityId": "21"
+        },
+        {
+            "name": "Enviar Kota Bogor",
+            "phone": "7232112",
+            "CityId": "22"
+        },
+        {
+            "name": "Enviar Kota Cimahi",
+            "phone": "7242112",
+            "CityId": "23"
+        },
+        {
+            "name": "Enviar Kota Cirebon",
             "phone": "771237",
             "CityId": "24"
         },
         {
-            "name": "Quickship Kota Depok",
+            "name": "Enviar Kota Depok",
             "phone": "771238",
             "CityId": "25"
+        },
+        {
+            "name": "Enviar Kota Sukabumi",
+            "phone": "771210",
+            "CityId": "26"
         }
     ]
 }

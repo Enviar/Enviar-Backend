@@ -13,14 +13,18 @@ module.exports = {
         references: {
           model: `Employees`,
           key: `id`
-        }
+        },
+        onUpdate: `CASCADE`,
+        onDelete: `CASCADE`
       },
       ProductId: {
         type: Sequelize.INTEGER,
         references: {
           model: `Products`,
           key: `id`
-        }
+        },
+        onUpdate: `CASCADE`,
+        onDelete: `CASCADE`
       },
       notes: {
         type: Sequelize.TEXT
