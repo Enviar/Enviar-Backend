@@ -340,9 +340,10 @@ class statusController {
                     next(err)
                 }
             }
+
             for (let fixSend of listTransit) {
                 try {
-                    // console.log(dataToSend.length, `data to send`);
+                    console.log(dataToSend, `data to send`);
 
                     if (dataToSend.length > 0) {
                         if (dataToSend[0][0].ProductId != fixSend) {
