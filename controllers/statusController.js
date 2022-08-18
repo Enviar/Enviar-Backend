@@ -270,9 +270,12 @@ class statusController {
                             console.log(`qyu`);
                             console.log(`cya`, list);
                         } else {
-                            console.log(`qyi`);
-                            console.log(`aya`, list);
-                            listTransit.push(list)
+                            if (!hasDuplicates(arrayStatus)) {
+                                // console.log("Duplicate elements found.");
+                                listTransit.push(list)
+                            }
+                            // console.log(`qyi`);
+                            // console.log(`aya`, list);
 
                         }
                     }
