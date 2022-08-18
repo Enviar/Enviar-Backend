@@ -217,6 +217,9 @@ class statusController {
                 dataTransit.push(el.ProductId)
             })
             // console.log(dataTransit, `transit`);
+            function hasDuplicates(arr) {
+                return arr.some(x => arr.indexOf(x) !== arr.lastIndexOf(x));
+            }
             for (const list of listProductId) {
                 try {
                     const statusx = await Status.findAll({
@@ -264,8 +267,10 @@ class statusController {
                     console.log(arrayStatus, `arrayStatys`, list);
                     if (arrayStatus.includes(`transit_diterima`)) {
                         if (arrayStatus.includes('siap_dikirim')) {
+                            console.log(`qyu`);
                             console.log(`cya`, list);
                         } else {
+                            console.log(`qyi`);
                             console.log(`aya`, list);
                             listTransit.push(list)
 
