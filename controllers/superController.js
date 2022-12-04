@@ -5,7 +5,7 @@ class superController {
         try {
             const response = await Employee.findAll({
                 where: {
-                    StoreId: +req.additionalData.id
+                    StoreId: +req.additionalData.storeId
                 }
             })
             // console.log(response);

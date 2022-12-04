@@ -280,41 +280,18 @@ class statusController {
                         }
                     }
                     else if (arrayStatus.includes('siap_dikirim') || arrayStatus.includes('transit_dikirim')) {
-                        // console.log(`blok`);
-                        // console.log(`siap_dikim`, list);
                     }
                     else {
-                        console.log(`as`);
                         listTransit.push(list)
                     }
 
-                    // console.log(listToSend);
                     arrayStatus = []
 
                 } catch (err) {
                     next(err)
                 }
             }
-            // console.log(listToSend, `listToSend`);
-            // for (let fixSend of listToSend) {
-            //     try {
-            //         const fixData = await Status.findAll({
-            //             where: {
-            //                 ProductId: fixSend,
-            //                 notes: `transit_diterima`
-            //             },
-            //             include: [Product]
-            //         })
-            //         if (fixData.length) {
 
-            //             dataToSend.push(fixData)
-            //         }
-            //     } catch (err) {
-            //         next(err)
-            //     }
-            // }
-            console.log(listTransit, `listTransit`);
-            console.log(listToSend, `listtosend`);
             for (let fixSend of listToSend) {
                 try {
                     console.log(dataToSend.length, `data to send`);
