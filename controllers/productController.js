@@ -66,9 +66,7 @@ class productController {
                 where: {
                     receiptNumber: receipt
                 },
-                order: [
-                    ['id', 'DESC']
-                ]
+
             })
             if (!response) {
                 throw new Error(`NOT_FOUND`)

@@ -401,7 +401,7 @@ class statusController {
                     ProductId: response.id
                 },
                 order: [
-                    ['id', 'ASC']
+                    ['id', 'DESC']
                 ],
                 include: [Product, City]
             })
