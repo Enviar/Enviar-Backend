@@ -30,7 +30,6 @@ class productController {
                         receiptNumber: receipt
                     }
                 })
-                // console.log(findReceipt);
                 if (!findReceipt) {
                     flag = true
                 }
@@ -63,12 +62,13 @@ class productController {
     static async findByReceipt(req, res, next) {
         try {
             const receipt = req.params.receipt
-            // console.log(receipt);
             const response = await Product.findOne({
                 where: {
                     receiptNumber: receipt
                 },
-
+                order: [
+                    ['id', 'DESC']
+                ]
             })
             if (!response) {
                 throw new Error(`NOT_FOUND`)
